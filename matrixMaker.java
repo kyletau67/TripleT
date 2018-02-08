@@ -1,6 +1,7 @@
 public class matrixMaker{
     int size;
     int[][] apple;
+    int[][] banana;
     public matrixMaker(){
 	size = 10;
     }
@@ -19,6 +20,9 @@ public class matrixMaker{
 	    }
 	}
     }
+    public void Matrix2(){
+	banana = new int[size][size];
+    }
     public String display(){
 	String retstr = "";
 	for(int i = 0; i < apple.length; i++){
@@ -32,7 +36,7 @@ public class matrixMaker{
 	return retstr;
     }
     public static void main(String[] args){
-	matrixMaker defMatrix = new matrixMaker();
+	matrixMaker defMatrix = new matrixMaker(100);
 	defMatrix.newMatrix();
         System.out.println(defMatrix.display());
     }
