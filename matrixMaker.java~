@@ -1,0 +1,38 @@
+public class matrixMaker{
+    int size;
+    int[][] apple;
+    public matrixMaker{
+	int size = 10;
+    }
+    public matrixMaker(int newSize){
+	int size = newSize;
+    }
+    public void newMatrix(int a){
+	int[][] retMatrix = new int[a][a];
+	apple = new int[a][a];
+	int ctr = 0;
+	for(int i = 0; i < a; i++){
+	    for(int j = 0; j < a; j++){
+		retMatrix[i][j] = ctr;
+		apple[i][j] = ctr;
+		ctr++;
+	    }
+	}
+    }
+    public String display(){
+	String retstr = "[ ";
+	for(int i = 0; i < apple.length; i++){
+	    for(int j = 0; j < apple.length; j++){
+		retstr += apple[i][j];
+		retstr += " ";
+	    }
+	    retstr += "]\n";
+	}
+    }
+    public static void main(String[] args){
+	matrixMaker defMatrix = new matrixMaker();
+	defMatrix.newMatrix();
+        System.out.println(defMatrix.display());
+    }
+
+}
