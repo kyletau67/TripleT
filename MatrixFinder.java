@@ -25,7 +25,7 @@ public class MatrixFinder {
         m2[0][0] = 1;
         m2[0][1] = 3;
         m2[0][2] = 5;
-        m2[0][3] = 7;
+       m2[0][3] = 7;
         m2[1][0] = 2;
         m2[1][1] = 4;
         m2[1][2] = 6;
@@ -52,7 +52,7 @@ public class MatrixFinder {
 
     }
 
-    public String search(int[][] matrix, int target){
+    public static String search(int[][] matrix, int target){
         String coord = "(-1,-1)"; //base coordinates for return
         int row = 0;
 	int col = matrix.length-1;
