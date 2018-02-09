@@ -15,8 +15,8 @@ public class matrixMaker{
 	int ctr = 0;
 	for(int i = 0; i < size; i++){
 	    for(int j = 0; j < size; j++){
-		retMatrix[i][j] = ctr;
-		apple[i][j] = ctr;
+		retMatrix[i][j] = (int) (Math.random() * 100);
+		apple[i][j] = (int) (Math.random() * 100);
 		ctr++;
 	    }
 	}
