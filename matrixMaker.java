@@ -22,8 +22,19 @@ public class matrixMaker{
     }
     public void Matrix2(){
 	banana = new int[size][size];
+  int minimum = 0;
+  for(int i = 0; i < size; i++){
+    banana[0][i] = i;
+    banana[i][0] = i;
+  }
+  for(int i = 1; i < size; i++){
+    for(int j = 1; j < size; j++){
+      minimum = Math.max(banana[i][j-1], banana[i-1][j]);
+      banana[i][j] = minimum + (int)(Math.random() * 4) + 1;
     }
-    public String display(){
+  }
+    }
+    public String displayApple(){
 	String retstr = "";
 	for(int i = 0; i < apple.length; i++){
 	    retstr += "[ ";
@@ -34,11 +45,24 @@ public class matrixMaker{
 	    retstr += "]\n";
 	}
 	return retstr;
-    }
+}
+  public String displayBanana(){
+  	String retstr = "";
+  	for(int i = 0; i < banana.length; i++){
+  	    retstr += "[ ";
+  	    for(int j = 0; j < banana.length; j++){
+  		retstr += banana[i][j];
+  		retstr += " ";
+  	    }
+  	    retstr += "]\n";
+  	}
+  	return retstr;
+  }
     public static void main(String[] args){
-	matrixMaker defMatrix = new matrixMaker(100);
+	matrixMaker defMatrix = new matrixMaker(6);
 	defMatrix.newMatrix();
-        System.out.println(defMatrix.display());
+  defMatrix.Matrix2();
+        System.out.println(defMatrix.displayBanana());
     }
 
 }
