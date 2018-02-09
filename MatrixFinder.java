@@ -52,98 +52,22 @@ public class MatrixFinder {
 
     }
 
-    public String top(String coord, int target, int counter, int[][] matrix) {
-    //will return new coord or keep the coord
-    currentRow = counter;
-    currentCol = counter;
-        while((currentCol <= matrix.length - 1)&&(currentRow >= 0)){
-            if (matrix[currentRow][currentCol] < target){
-                currentCol++; //go right, numbers increase to the right
-            }
-            if (matrix[currentRow][currentCol] > target){
-                currentRow--; //go up, numbers decrease to the top
-            }
-			if (currentRow == 0 && (currentCol == matrix.length - 1 || currentCol == 0) && matrix[currentRow][currentCol] != target){
-				coord = "(-1,-1)";
-			}
-	    if(currentCol == matrix.length - 1){
-		if(matrix[currentRow][currentCol] > target){
-		    currentRow --;
-		} else {
-		    currentRow ++;
-		}
-	    }
-	    if(currentRow == 0){
-		if(matrix[currentRow][currentCol] > target){
-		    currentCol --;
-		} else {
-		    currentCol ++;
-		}
-	    }
-            if (matrix[currentRow][currentCol] == target){
-                coord = "(" + currentRow + "," + currentCol + ")";
-                return coord;
-            }
-	   
-
-	    
-            counter++;
-        }
-        return coord;
-    }
-
-
-    public String bottom(String coord, int target, int counter, int[][] matrix) {
-        currentRow = counter;
-        currentCol = counter;
-        while((currentCol >= 0) && (currentRow <= matrix.length - 1)){
-	    if(matrix[currentRow][currentCol] < target){
-		currentRow++;
-	    }
-	    if(matrix[currentRow][currentCol] > target){
-		currentCol--;
-	    }
-		if (currentCol == 0 && currentRow == 0 && matrix[currentRow][currentCol] != target){
-				coord = "(-1,-1)";
-			}
-	    if(currentCol == 0){
-		if(matrix[currentRow][currentCol] > target){
-		    currentRow --;
-		} else {
-		    currentRow ++;
-		}
-	    }
-	    if(currentRow == matrix.length - 1){
-		if(matrix[currentRow][currentCol] > target){
-		    currentCol --;
-		} else {
-		    currentCol ++;
-		}
-	    }
-
-            if (matrix[currentRow][currentCol] == target){
-                coord = "(" + currentRow + "," + currentCol + ")";
-                return coord;
-            }
-            counter++;
-        }
-	return coord;
-    }
-
     public String search(int[][] matrix, int target){
         String coord = "(-1,-1)"; //base coordinates for return
-        int counter = 0;
-    outer:
-        while (counter < matrix.length) {
-            if (matrix[counter][counter] > target) {
-        break outer; }//if the diagonal # is larger, break
-            else {
-        counter++; }
-        }
-        counter--; //go back one diagonal
-        coord = top(coord, target, counter, matrix); //replace coord maybe
-        coord = bottom(coord, target, counter, matrix); //replace coord maybe
-        return coord;
+        int row = 0;
+	int col = matrix.length-1;
+	while ( row < matrix.length && col >= 0){
+	    if(matrix[row][col] == target){
+		coord = "( " + row + "," + col + " )";
+		return coord;
+	    }
+	    if(matrix[row][col] > target){
+		col --;
+	    } else {
+		row ++;
+	    }
+	}
+	return coord;
 
 
 
