@@ -11,5 +11,6 @@ public class MFDriver{
 	}
 	endTime = System.currentTimeMillis();
 	System.out.println("Time elapsed: " + (endTime - startTime));
+	System.out.println("Avg: " + ((endTime - startTime) / 10000.0));
     }
 }
