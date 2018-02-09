@@ -23,3 +23,4 @@ Each trial will be searching for the same value but throughout the different siz
 
 # Conclusions
 As we increase the size of the matrix, the runtime does increase. When we saw the line of best fit, we saw it as a straight line that sloped upwards, which meant that our algorithm **did run in O(n) time**. There were outliers when n = 4500 and n = 5000, but this didn't affect our data too much. 
+Our hypothesis proved to be correct. :)
