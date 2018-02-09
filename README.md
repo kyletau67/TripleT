@@ -1,9 +1,9 @@
 # TripleT
 
 Kyle Tau, Angela Tom, Simon Tsui
-\nAPCS2 pd2
-\nLab 00 -- But What Does the Data Say?
-\n2018-02-09
+\n APCS2 pd2
+\n Lab 00 -- But What Does the Data Say?
+\n 2018-02-09
 
 # Hypothesis
 Our method achieves O(n) runtime by searching from the top right to the bottom left.
