@@ -2,6 +2,7 @@ public class matrixMaker{
     int size;
     int[][] apple;
     int[][] banana;
+    static int[][] saved;
     public matrixMaker(){
 	size = 10;
     }
@@ -58,11 +59,32 @@ public class matrixMaker{
   	}
   	return retstr;
   }
+      public String displaySaved(){
+  	String retstr = "";
+  	for(int i = 0; i < saved.length; i++){
+  	    retstr += "[ ";
+  	    for(int j = 0; j < saved.length; j++){
+  		retstr += saved[i][j];
+  		retstr += " ";
+  	    }
+  	    retstr += "]\n";
+  	}
+	saveMatrix();
+  	return retstr;
+  }
+    public void saveMatrix(){
+	saved = banana;
+    }
     public static void main(String[] args){
-	matrixMaker defMatrix = new matrixMaker(6);
+	matrixMaker defMatrix = new matrixMaker(30);
 	defMatrix.newMatrix();
   defMatrix.Matrix2();
         System.out.println(defMatrix.displayBanana());
+	if(saved == null){
+	    defMatrix.saveMatrix();
+	}
+	System.out.println("\n=======================================\n");
+	System.out.println(defMatrix.displaySaved());
     }
 
 }
