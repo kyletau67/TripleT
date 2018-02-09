@@ -21,7 +21,6 @@ public class MatrixFinder {
         m[2][1] = 4;
         m[2][2] = 5;
         System.out.println(yes.search(m , 2));
-	System.out.println("END");
         int[][] m2 = new int[4][4];
         m2[0][0] = 1;
         m2[0][1] = 3;
@@ -40,39 +39,54 @@ public class MatrixFinder {
         m2[3][1] = 13;
         m2[3][3] = 16;
         System.out.println(yes.search(m2, 12));
-	System.out.println("END");
 
 
         int[][] m3 = new int[1][1];
-	m3[0][0] =5;
+    m3[0][0] =5;
 
-	System.out.println(yes.search(m3, 5)); // In the matrix
+    System.out.println(yes.search(m3, 5)); // In the matrix
 
-	System.out.println(yes.search(m3, 10)); // Not in the matrix
+    System.out.println(yes.search(m3, 10)); // Not in the matrix
 
 
 
     }
 
     public String top(String coord, int target, int counter, int[][] matrix) {
-	//will return new coord or keep the coord
-	currentRow = counter;
-	currentCol = counter;
-        while((currentCol < matrix.length - 1)&&(currentRow > 0)){
+    //will return new coord or keep the coord
+    currentRow = counter;
+    currentCol = counter;
+        while((currentCol <= matrix.length - 1)&&(currentRow >= 0)){
             if (matrix[currentRow][currentCol] < target){
                 currentCol++; //go right, numbers increase to the right
-		coord = "(" + currentRow + "," + currentCol + ")";
-		System.out.println(coord);
             }
             if (matrix[currentRow][currentCol] > target){
                 currentRow--; //go up, numbers decrease to the top
-		coord = "(" + currentRow + "," + currentCol + ")";
-		System.out.println(coord);
             }
+			if (currentRow == 0 && (currentCol == matrix.length - 1 || currentCol == 0) && matrix[currentRow][currentCol] != target){
+				coord = "(-1,-1)";
+			}
+	    if(currentCol == matrix.length - 1){
+		if(matrix[currentRow][currentCol] > target){
+		    currentRow --;
+		} else {
+		    currentRow ++;
+		}
+	    }
+	    if(currentRow == 0){
+		if(matrix[currentRow][currentCol] > target){
+		    currentCol --;
+		} else {
+		    currentCol ++;
+		}
+	    }
             if (matrix[currentRow][currentCol] == target){
                 coord = "(" + currentRow + "," + currentCol + ")";
                 return coord;
             }
+	   
+
+	    
             counter++;
         }
         return coord;
@@ -82,13 +96,31 @@ public class MatrixFinder {
     public String bottom(String coord, int target, int counter, int[][] matrix) {
         currentRow = counter;
         currentCol = counter;
-        while((currentCol > 0) && (currentRow < matrix.length - 1)){
+        while((currentCol >= 0) && (currentRow <= matrix.length - 1)){
 	    if(matrix[currentRow][currentCol] < target){
 		currentRow++;
 	    }
 	    if(matrix[currentRow][currentCol] > target){
 		currentCol--;
 	    }
+		if (currentCol == 0 && currentRow == 0 && matrix[currentRow][currentCol] != target){
+				coord = "(-1,-1)";
+			}
+	    if(currentCol == 0){
+		if(matrix[currentRow][currentCol] > target){
+		    currentRow --;
+		} else {
+		    currentRow ++;
+		}
+	    }
+	    if(currentRow == matrix.length - 1){
+		if(matrix[currentRow][currentCol] > target){
+		    currentCol --;
+		} else {
+		    currentCol ++;
+		}
+	    }
+
             if (matrix[currentRow][currentCol] == target){
                 coord = "(" + currentRow + "," + currentCol + ")";
                 return coord;
@@ -101,17 +133,12 @@ public class MatrixFinder {
     public String search(int[][] matrix, int target){
         String coord = "(-1,-1)"; //base coordinates for return
         int counter = 0;
-	outer:
+    outer:
         while (counter < matrix.length) {
-	    //System.out.println("GO");
-	    if (matrix[counter][counter] == target) {
-		//System.out.println("z");
-		coord = "(" + counter + "," + counter + ")";
-                return coord; }
-            else if (matrix[counter][counter] > target) {
-		break outer; }//if the diagonal # is larger, break
+            if (matrix[counter][counter] > target) {
+        break outer; }//if the diagonal # is larger, break
             else {
-		counter++; }
+        counter++; }
         }
         counter--; //go back one diagonal
         coord = top(coord, target, counter, matrix); //replace coord maybe
