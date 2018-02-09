@@ -3,7 +3,7 @@
   HW03 -- I Am Still Searching
   2018-02-02 */
 
-/* Our algo first runs through the diagonal from the top left corner. When the next number that the algo checks in the diagonal is greater than the target, the algo stops at the number previous (not bigger than target). Then it searches in linear fashion in both the top half of the diagonal and the bottom half of the diagonal. */
+/* Our algo first starts from the top right corner of the matrix. The finder searches to adjacent values until it reaches the bottom left corner. At this point it will stop searching and return (-1,-1), meaning that the target is not in the matrix. */
 
 public class MatrixFinder {
     public int currentRow;
@@ -54,17 +54,17 @@ public class MatrixFinder {
 
     public static String search(int[][] matrix, int target){
         String coord = "(-1,-1)"; //base coordinates for return
-        int row = 0;
-	int col = matrix.length-1;
+        int row = 0; //first row
+	int col = matrix.length-1; //last column
 	while ( row < matrix.length && col >= 0){
 	    if(matrix[row][col] == target){
-		coord = "( " + row + "," + col + " )";
-		return coord;
+		coord = "( " + row + "," + col + " )"; //update coord
+		return coord; //target found
 	    }
 	    if(matrix[row][col] > target){
-		col --;
+		col --; //go left
 	    } else {
-		row ++;
+		row ++; //go down
 	    }
 	}
 	return coord;
